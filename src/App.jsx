@@ -17,7 +17,9 @@ function App() {
         </nav>
       </header>
       <main>
-        <AddPokemon />
+        <Routes>
+          <Route path='/add' element={<AddPokemon />} />
+        </Routes>
       </main>
     </div> 
   );
