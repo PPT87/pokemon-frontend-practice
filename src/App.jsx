@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {Route, Routes, NavLink} from 'react-router-dom'
+import AddPokemon from './pages/AddPokemon/AddPokemon';
 
 import './App.css';
 
@@ -16,7 +17,7 @@ function App() {
         </nav>
       </header>
       <main>
-        
+        <AddPokemon />
       </main>
     </div> 
   );
