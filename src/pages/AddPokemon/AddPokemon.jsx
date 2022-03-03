@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 const AddPokemon = (props) => {
-  
+  const [formData, setFormData] = useState({
+    name: '',
+    type: '',
+  })
+
+  const [validForm, setValidForm] = useState(false)
+
+  const formElement = useRef()
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  }
+
+  useEffect(() => {
+    formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
+  }, [formData])
+
   return (
     <>
       <h1>Add Pokemon</h1>
-      <form>
+      <form ref={formElement}>
 
         <div className='form-group mb-3'>
           <label htmlFor='name-input' className='form-label'>
@@ -16,6 +32,8 @@ const AddPokemon = (props) => {
             className="form-control"
             id='name-input'
             name='name'
+            value={formData.name}
+            onChange={handleChange}
             required
           />
         </div>
@@ -29,13 +47,17 @@ const AddPokemon = (props) => {
             className="form-control"
             id='type-input'
             name='type'
+            value={formData.type}
+            onChange={handleChange}
             required
           />
         </div>
+        
         <div className='d-grid'>
           <button
             type='submit'
             className='btn btn-primary btn-fluid'
+            disabled={!validForm}
           >
             Add Pokemon
           </button>
