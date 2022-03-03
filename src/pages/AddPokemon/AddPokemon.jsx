@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const AddPokemon = (props) => {
+const AddPokemon = ({ handleAddPokemon }) => {
   const [formData, setFormData] = useState({
     name: '',
     type: '',
@@ -18,10 +18,15 @@ const AddPokemon = (props) => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])
 
+  const handleSubmit = (e) => {
+    e.preventDefault() //prevents page being refreshed
+    handleAddPokemon(formData)
+  }
+
   return (
     <>
       <h1>Add Pokemon</h1>
-      <form ref={formElement}>
+      <form ref={formElement} onSubmit={handleSubmit}>
 
         <div className='form-group mb-3'>
           <label htmlFor='name-input' className='form-label'>

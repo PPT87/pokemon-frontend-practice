@@ -7,6 +7,12 @@ import './App.css';
 function App() {
   const [pokemon, setPokemon] = useState([])
 
+  //takes in the new pokemon data
+  const handleAddPokemon = newPokemonData => {
+    //will set the pokemon with any existing pokemon in addition to the new pokemon data
+    setPokemon([...pokemon, newPokemonData])
+  }
+
   return (
     <div className="App">
       <header className='App-header'>
@@ -18,7 +24,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path='/add' element={<AddPokemon />} />
+          <Route path='/add' element={<AddPokemon handleAddPokemon={handleAddPokemon}/>} />
         </Routes>
       </main>
     </div> 
