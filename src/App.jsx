@@ -2,15 +2,21 @@ import { useState } from 'react';
 import {Route, Routes, NavLink} from 'react-router-dom'
 import AddPokemon from './pages/AddPokemon/AddPokemon';
 
+import * as pokemonService from "./services/pokemon"
+
 import './App.css';
 
 function App() {
   const [pokemon, setPokemon] = useState([])
 
   //takes in the new pokemon data
-  const handleAddPokemon = newPokemonData => {
-    //will set the pokemon with any existing pokemon in addition to the new pokemon data
-    setPokemon([...pokemon, newPokemonData])
+  const handleAddPokemon = async newPokemonData => {
+
+    //going to await pokemonService for it to create a new pokemon using the newPokemonData
+    const newPokemon = await pokemonService.create(newPokemonData)
+
+    //will set the pokemon state with any existing pokemon in addition to the newPokemon that was created
+    setPokemon([...pokemon, newPokemon])
   }
 
   return (
