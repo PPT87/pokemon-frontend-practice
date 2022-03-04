@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {Route, Routes, NavLink} from 'react-router-dom'
+import {Route, Routes, NavLink, useNavigate} from 'react-router-dom'
 import AddPokemon from './pages/AddPokemon/AddPokemon';
 
 import * as pokemonService from "./services/pokemon"
@@ -9,6 +9,9 @@ import './App.css';
 function App() {
   const [pokemon, setPokemon] = useState([])
 
+  //this allows us to "redirect" to another page without refreshing the page
+  const navigate = useNavigate()
+
   //takes in the new pokemon data
   const handleAddPokemon = async newPokemonData => {
 
@@ -17,6 +20,7 @@ function App() {
 
     //will set the pokemon state with any existing pokemon in addition to the newPokemon that was created
     setPokemon([...pokemon, newPokemon])
+    navigate('/')
   }
 
   //to get all pokemon
