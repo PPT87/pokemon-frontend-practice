@@ -14,6 +14,15 @@ const create = (pokemon) => {
   .then(res => res.json())
 }
 
+//get all pokemon function
+const getAll = () => {
+  //we're not sending anything to the backend so we don't need a header
+  //we're not sending anything on the body, so we don't need a body
+  return fetch(BASE_URL)
+  .then(res => res.json())
+}
+
 export {
   create,
+  getAll,
 }

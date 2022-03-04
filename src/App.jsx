@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Route, Routes, NavLink} from 'react-router-dom'
 import AddPokemon from './pages/AddPokemon/AddPokemon';
 
@@ -19,7 +19,13 @@ function App() {
     setPokemon([...pokemon, newPokemon])
   }
 
-  return (
+  //to get all pokemon
+  useEffect(() => {
+    pokemonService.getAll()
+    .then(allPokemon => setPokemon(allPokemon))
+  }, [])
+
+  return ( 
     <div className="App">
       <header className='App-header'>
         React Pokemon CRUD
