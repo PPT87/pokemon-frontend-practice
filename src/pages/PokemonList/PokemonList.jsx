@@ -4,8 +4,8 @@ import styles from './PokemonList.module.css'
 const PokemonList = ({pokemon}) => {
   return (
     <div className={styles.container}>
-      {pokemon.map((pmon, idx) =>
-        <h1 key={idx}>{pmon.name} <span><h5>{pmon.type}</h5></span></h1>
+      {pokemon.map((pmon) =>
+        <h1 key={pmon._id}>{pmon.name} <span><h5>{pmon.type}</h5></span></h1>
       )}
     </div>
   )
