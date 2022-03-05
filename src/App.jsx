@@ -25,9 +25,10 @@ function App() {
   }
 
   const handleDeletePokemon = (id) => {
+    pokemonService.deleteOne(id)
+    .then(setPokemon(pokemon.filter(pmon => pmon._id !== id)))
     //filter out any pokemon whose id IS NOT the id that we're passing in above
     //the new state is all of the pokemon except for the pokemon that has an id that matches the pokemonID
-    setPokemon(pokemon.filter(pmon => pmon._id !== id))
   }
 
   //to get all pokemon
