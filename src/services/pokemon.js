@@ -29,6 +29,8 @@ const deleteOne = (id) => {
   .then(res=>res.json())
 }
 
+
+
 export {
   create,
   getAll,
