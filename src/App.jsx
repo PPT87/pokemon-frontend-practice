@@ -32,6 +32,16 @@ function App() {
     .then(setPokemon(pokemon.filter(pmon => pmon._id !== id)))
   }
 
+  //lift up the state of the form to the App component because that's where our state for pokemon is being held.
+  const handleUpdatePokemon = (updatedPokemonData) => {
+    //Using map to replace just the pokemon that was updated
+    const newPokemonArray = pokemon.map(pmon =>
+      pmon._id === updatedPokemonData._id ? updatedPokemonData : pmon
+    )
+    setPokemon(newPokemonArray)
+    navigate('/')
+  }
+
   //to get all pokemon
   useEffect(() => {
     pokemonService.getAll()
@@ -58,7 +68,7 @@ function App() {
           handleAddPokemon={handleAddPokemon}/>} 
           />
           <Route path='/edit'
-          element={<EditPokemon/>}
+          element={<EditPokemon handleUpdatePokemon={handleUpdatePokemon}/>}
           />
         </Routes>
       </main>

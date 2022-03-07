@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const EditPokemon = ({ pmon }) => {
+const EditPokemon = ({ pmon, handleUpdatePokemon }) => {
   //useLocation let's us access the data of the PuppyCard component
   const location = useLocation()
   
@@ -26,6 +26,7 @@ const EditPokemon = ({ pmon }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    handleUpdatePokemon(formData)
   }
 
   return (
