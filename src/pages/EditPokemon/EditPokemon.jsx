@@ -1,15 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const EditPokemon = () => {
+const EditPokemon = ({ pmon }) => {
   //useLocation let's us access the data of the PuppyCard component
   const location = useLocation()
   
-  const [formData, setFormData] = useState(location.state.pokemon)
+  const [formData, setFormData] = useState(location.state.pmon)
 
   //setting initial state to true because when the component is mounted the form is valid
   const [validForm, setValidForm] = useState(true)
 
+  //this is to hold on to the form so we can always have access to it and check its validity
   const formElement = useRef()
 
   //checking to see if form is valid. This is called every time the formData state changes.
@@ -19,13 +20,21 @@ const EditPokemon = () => {
 
   //handling controlled inputs like addPokemon
   const handleChange = (e) => {
+    e.preventDefault()
     setFormData({...formData, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
   }
 
   return (
     <>
       <h1>Edit Pokemon</h1>
-      <form ref={formElement}>
+      <form 
+      ref={formElement}
+      onSubmit={handleSubmit}
+      >
 
         <div className='form-group mb-3'>
           <label htmlFor='name-input' className='form-label'>
