@@ -13,7 +13,7 @@ const PokemonCard = ({ pmon, handleDeletePokemon }) => {
         <Link
         className='btn btn-sm btn-warning'
         to='/edit'
-        state={{pmon}}
+        state={{pmon}} //passing pmon state to set edit form
         >
         Edit
         </Link>

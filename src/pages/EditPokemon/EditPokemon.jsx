@@ -1,10 +1,20 @@
 import React, {useState, useRef} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const EditPokemon = () => {
+  //useLocation let's us access the data of the PuppyCard component
+  const location = useLocation()
+  
+  const [formData, setFormData] = useState(location.state.pokemon)
+
+  //handling controlled inputs like addPokemon
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  }
+
   return (
     <>
-      <h1>Add Pokemon</h1>
+      <h1>Edit Pokemon</h1>
       <form>
 
         <div className='form-group mb-3'>
@@ -16,6 +26,8 @@ const EditPokemon = () => {
             className="form-control"
             id='name-input'
             name='name'
+            value={formData.name}
+            onChange={handleChange}
             required
           />
         </div>
@@ -29,6 +41,8 @@ const EditPokemon = () => {
             className="form-control"
             id='type-input'
             name='type'
+            value={formData.type}
+            onChange={handleChange}
             required
           />
         </div>

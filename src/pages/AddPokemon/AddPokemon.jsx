@@ -10,6 +10,7 @@ const AddPokemon = ({ handleAddPokemon }) => {
 
   const formElement = useRef()
 
+  //this is handling controlled inputs in the form below
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value})
   }
@@ -37,7 +38,7 @@ const AddPokemon = ({ handleAddPokemon }) => {
             className="form-control"
             id='name-input'
             name='name'
-            value={formData.name}
+            value={formData.name} //controlled input
             onChange={handleChange}
             required
           />
@@ -52,7 +53,7 @@ const AddPokemon = ({ handleAddPokemon }) => {
             className="form-control"
             id='type-input'
             name='type'
-            value={formData.type}
+            value={formData.type} //controlled input
             onChange={handleChange}
             required
           />
