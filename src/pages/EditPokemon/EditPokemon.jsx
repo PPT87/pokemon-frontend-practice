@@ -33,7 +33,7 @@ const EditPokemon = () => {
           />
         </div>
         
-        <div className='d-grid'>
+        <div className='d-grid mb-3'>
           <button
             type='submit'
             className='btn btn-primary btn-fluid'
@@ -41,7 +41,14 @@ const EditPokemon = () => {
             Save
           </button>
         </div>
-
+        <div className="d-grid">
+          <Link 
+          to='/'
+          className='btn btn-danger btn-fluid'
+          >
+            Cancel
+          </Link>
+        </div>
       </form>
     </>
   )

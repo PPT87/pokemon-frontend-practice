@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {Route, Routes, NavLink, useNavigate} from 'react-router-dom'
 import AddPokemon from './pages/AddPokemon/AddPokemon';
 import PokemonList from './pages/PokemonList/PokemonList';
+import EditPokemon from './pages/EditPokemon/EditPokemon';
 
 import * as pokemonService from "./services/pokemon"
 
@@ -55,6 +56,9 @@ function App() {
           <Route path='/add' 
           element={<AddPokemon 
           handleAddPokemon={handleAddPokemon}/>} 
+          />
+          <Route path='/edit'
+          element={<EditPokemon/>}
           />
         </Routes>
       </main>
