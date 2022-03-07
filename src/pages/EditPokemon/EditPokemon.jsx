@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 const EditPokemon = () => {
@@ -6,6 +6,16 @@ const EditPokemon = () => {
   const location = useLocation()
   
   const [formData, setFormData] = useState(location.state.pokemon)
+
+  //setting initial state to true because when the component is mounted the form is valid
+  const [validForm, setValidForm] = useState(true)
+
+  const formElement = useRef()
+
+  //checking to see if form is valid. This is called every time the formData state changes.
+  useEffect(() => {
+    formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
+  }, [formData])
 
   //handling controlled inputs like addPokemon
   const handleChange = (e) => {
@@ -15,7 +25,7 @@ const EditPokemon = () => {
   return (
     <>
       <h1>Edit Pokemon</h1>
-      <form>
+      <form ref={formElement}>
 
         <div className='form-group mb-3'>
           <label htmlFor='name-input' className='form-label'>
@@ -51,6 +61,7 @@ const EditPokemon = () => {
           <button
             type='submit'
             className='btn btn-primary btn-fluid'
+            disabled={!validForm}
           >
             Save
           </button>
