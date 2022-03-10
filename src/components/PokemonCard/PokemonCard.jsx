@@ -1,25 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const PokemonCard = ({ pmon, handleDeletePokemon }) => {
+const PokemonCard = ({ pokemon, handleDeletePokemon }) => {
 
   return (
     <div className='card'>
       <div className="card-body">
-        <h2 className="card-text">{pmon.name}</h2>
-        <p className='card-text'>{pmon.type}</p>
+        <h2 className="card-text">{pokemon.name}</h2>
+        <p className='card-text'>{pokemon.type}</p>
       </div>
       <div className="card-footer">
         <Link
         className='btn btn-sm btn-warning'
         to='/edit'
-        state={{pmon}} //passing pmon state to set edit form
+        state={{pokemon}} //passing pokemon state to set edit form
         >
         Edit
         </Link>
         <button 
         className='btn btn-sm btn-danger m-left'
-        onClick={()=>handleDeletePokemon(pmon._id)}
+        onClick={()=>handleDeletePokemon(pokemon._id)}
         >
           Delete
         </button>

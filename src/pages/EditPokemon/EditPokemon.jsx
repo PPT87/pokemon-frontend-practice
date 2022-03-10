@@ -1,28 +1,28 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const EditPokemon = ({ pmon, handleUpdatePokemon }) => {
+const EditPokemon = ({ handleUpdatePokemon }) => {
   //useLocation let's us access the data of the PuppyCard component
   const location = useLocation()
+
+  //this is to hold on to the form so we can always have access to it and check its validity
+  const formElement = useRef()
   
-  const [formData, setFormData] = useState(location.state.pmon)
+  const [formData, setFormData] = useState(location.state.pokemon)
 
   //setting initial state to true because when the component is mounted the form is valid
   const [validForm, setValidForm] = useState(true)
 
-  //this is to hold on to the form so we can always have access to it and check its validity
-  const formElement = useRef()
+    //handling controlled inputs like addPokemon
+  const handleChange = (e) => {
+    e.preventDefault()
+    setFormData({...formData, [e.target.name]: e.target.value})
+  }
 
   //checking to see if form is valid. This is called every time the formData state changes.
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])
-
-  //handling controlled inputs like addPokemon
-  const handleChange = (e) => {
-    e.preventDefault()
-    setFormData({...formData, [e.target.name]: e.target.value})
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
