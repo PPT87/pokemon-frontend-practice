@@ -32,13 +32,6 @@ const getAll = async () => {
   }
 }
 
-// const deleteOne = (id) => {
-//   return fetch(`${BASE_URL}/${id}`, {
-//     method: "DELETE"
-//   })
-//   .then(res => res.json())
-// }
-
 const deleteOne = async id => {
   try{
     await fetch(`${BASE_URL}/${id}`, {
@@ -49,15 +42,31 @@ const deleteOne = async id => {
   }
 }
 
-const update = async (pokemon) => {
-  const updatedPokemon = await fetch(`${BASE_URL}/${pokemon._id}`, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(pokemon),
-  });
-  return await updatedPokemon.json()
+// const update = async (pokemon) => {
+//   const updatedPokemon = await fetch(`${BASE_URL}/${pokemon._id}`, {
+//     method: "PUT",
+//     headers: {
+//       "content-type": "application/json",
+//     },
+//     body: JSON.stringify(pokemon),
+//   });
+//   return await updatedPokemon.json()
+// }
+
+const update = async pokemon => {
+  try{
+    const res = await fetch(`${BASE_URL}/${pokemon._id}`, {
+      method: 'PUT',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(pokemon)
+    })
+    const data = await res.json()
+    return data
+  } catch (err){
+    throw err
+  }
 }
 
 export {
