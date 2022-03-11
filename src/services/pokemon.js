@@ -20,11 +20,16 @@ const create = async pokemon => {
 }
 
 //get all pokemon function
-const getAll = () => {
-  //we're not sending anything to the backend so we don't need a header
-  //we're not sending anything on the body, so we don't need a body
-  return fetch(BASE_URL)
-  .then(res => res.json())
+const getAll = async () => {
+  try{
+    //we're not sending anything to the backend so we don't need a header
+    //we're not sending anything on the body, so we don't need a body
+    const res = await fetch(`${BASE_URL}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw err
+  }
 }
 
 const deleteOne = (id) => {
