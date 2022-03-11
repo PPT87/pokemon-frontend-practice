@@ -32,11 +32,21 @@ const getAll = async () => {
   }
 }
 
-const deleteOne = (id) => {
-  return fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE"
-  })
-  .then(res => res.json())
+// const deleteOne = (id) => {
+//   return fetch(`${BASE_URL}/${id}`, {
+//     method: "DELETE"
+//   })
+//   .then(res => res.json())
+// }
+
+const deleteOne = async id => {
+  try{
+    await fetch(`${BASE_URL}/${id}`, {
+      method: "DELETE"
+    })
+  } catch (err) {
+    throw err
+  }
 }
 
 const update = async (pokemon) => {
