@@ -42,16 +42,6 @@ const deleteOne = async id => {
   }
 }
 
-// const update = async (pokemon) => {
-//   const updatedPokemon = await fetch(`${BASE_URL}/${pokemon._id}`, {
-//     method: "PUT",
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//     body: JSON.stringify(pokemon),
-//   });
-//   return await updatedPokemon.json()
-// }
 
 const update = async pokemon => {
   try{
